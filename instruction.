@@ -1,0 +1,4 @@
+clone on your system.
+cd /evershop/app
+change ClusterIP to NodePort in values.yaml file to access application on port of node.
+helm install -f values.yaml evershop .
