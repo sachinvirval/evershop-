@@ -2,3 +2,5 @@ clone on your system.
 cd /evershop/app
 change ClusterIP to NodePort in values.yaml file to access application on port of node.
 helm install -f values.yaml evershop .
+if you want admin access then run this command in evershop pod.
+npm run user:create -- --email "your email" --password "your password" --name "your name"
