@@ -1,0 +1,15 @@
+# File: templates/postgresql-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  labels:
+    app: postgres
+spec:
+  selector:
+    app: postgres
+  ports:
+    - port: {{ .Values.postgres.service.port }}
+      targetPort: 5432
+  type: {{ .Values.postgres.service.type }}
+

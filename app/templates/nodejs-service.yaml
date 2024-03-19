@@ -1,0 +1,15 @@
+# File: templates/nodejs-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: evershop
+  labels:
+    app: evershop
+spec:
+  selector:
+    app: evershop
+  ports:
+    - port: {{ .Values.nodejs.service.port }}
+      targetPort: 3000
+  type: {{ .Values.nodejs.service.type }}
+

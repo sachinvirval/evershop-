@@ -1,0 +1,40 @@
+# File: templates/nodejs-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: evershop
+  labels:
+    app: evershop
+spec:
+  replicas: {{ .Values.nodejs.replicaCount }}
+  selector:
+    matchLabels:
+      app: evershop
+  template:
+    metadata:
+      labels:
+        app: evershop
+    spec:
+      containers:
+        - name: nodejs
+          image: "{{ .Values.nodejs.image.repository }}:{{ .Values.nodejs.image.tag }}"
+          imagePullPolicy: {{ .Values.nodejs.image.pullPolicy }}
+          ports:
+            - containerPort: 3000
+          env:
+            - name: ENVIRONMENT
+              value: "test"
+            - name: DB_HOST
+              value: "postgres"
+            - name: DB_PORT
+              value: "5432"
+            - name: DB_NAME
+              value: "postgres"
+            - name: DB_USER
+              value: "postgres"
+            - name: DB_PASSWORD
+              value: "postgres"   
+          command: [ "/bin/sh", "-c" ]
+          args:         
+          - npm run start;
+
